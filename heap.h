@@ -5,12 +5,12 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define UNIMPLEMENTED \
-    do { \
-        fprintf(stderr, "%s:%d: %s is not implemented yet\n", \
-                __FILE__, __LINE__, __func__); \
-        abort(); \
-    } while(0)
+#define UNIMPLEMENTED                                                          \
+  do {                                                                         \
+    fprintf(stderr, "%s:%d: %s is not implemented yet\n", __FILE__, __LINE__,  \
+            __func__);                                                         \
+    abort();                                                                   \
+  } while (0)
 
 #define HEAP_CAP_BYTES 640000
 static_assert(HEAP_CAP_BYTES % sizeof(uintptr_t) == 0,
@@ -28,13 +28,13 @@ void heap_collect();
 #define CHUNK_LIST_CAP 1024
 
 typedef struct {
-    uintptr_t *start;
-    size_t size;
+  uintptr_t *start;
+  size_t size;
 } Chunk;
 
 typedef struct {
-    size_t count;
-    Chunk chunks[CHUNK_LIST_CAP];
+  size_t count;
+  Chunk chunks[CHUNK_LIST_CAP];
 } Chunk_List;
 
 extern Chunk_List alloced_chunks;
